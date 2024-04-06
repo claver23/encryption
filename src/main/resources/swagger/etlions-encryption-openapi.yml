@@ -1,0 +1,473 @@
+openapi: 3.0.3
+info:
+  title: Panther - Encryption API
+  version: 1.0.0
+  description: Panther encryption module for ETLions group.
+servers:
+  - url: http://localhost:8080/api
+tags:
+  - name: rsa
+    description: It's all about RSA encryption
+  - name: aes
+    description: It's all about AES encryption
+paths:
+  /rsa/load-keys:
+    post:
+      summary: Encrypts the request
+      tags:
+        - rsa
+      requestBody:
+        description: Load keys request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoadKeysRequest'
+      responses:
+        "200":
+          description: generating keys successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /rsa/generate-keys:
+    post:
+      summary: Encrypts the request
+      tags:
+        - rsa
+      requestBody:
+        description: Generate keys request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateKeysRequest'
+      responses:
+        "200":
+          description: generating keys successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /rsa/encrypt:
+    post:
+      summary: Encrypts the request
+      tags:
+        - rsa
+      requestBody:
+        description: Encrypt request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncryptRequest'
+      responses:
+        "200":
+          description: encryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /rsa/decrypt:
+    post:
+      summary: Decrypts the request
+      tags:
+        - rsa
+      requestBody:
+        description: Decrypt request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecryptRequest'
+      responses:
+        "200":
+          description: Decryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /aes/load-keys:
+    post:
+      summary: Encrypts the request
+      tags:
+        - aes
+      requestBody:
+        description: Load keys request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoadKeyRequest'
+      responses:
+        "200":
+          description: Decryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /aes/generate-key:
+    post:
+      summary: Encrypts the request
+      tags:
+        - aes
+      requestBody:
+        description: Generate keys request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateKeyRequest'
+      responses:
+        "200":
+          description: Decryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /aes/encrypt:
+    post:
+      summary: Encrypts the request
+      tags:
+        - aes
+      requestBody:
+        description: Encrypt request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EncryptRequest'
+      responses:
+        "200":
+          description: Decryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /aes/decrypt:
+    post:
+      summary: Decrypts the request
+      tags:
+        - aes
+      requestBody:
+        description: Decrypt request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecryptRequest'
+      responses:
+        "200":
+          description: Decryption successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    LoadKeyRequest:
+      type: object
+      required:
+        - secretKey
+      properties:
+        secretKey:
+          type: string
+          description: the generated AES secret key
+    LoadKeysRequest:
+      type: object
+      required:
+        - publicKey
+        - privateKey
+      properties:
+        publicKey:
+          type: string
+          description: The generated RSA public key
+        privateKey:
+          type: string
+          description: The generated RSA private key
+    GenerateKeyRequest:
+      type: object
+      properties:
+        keyBits:
+          $ref: '#/components/schemas/AESKeyBits'
+      required:
+        - keyBits
+    GenerateKeyResponse:
+      type: object
+      properties:
+        secretKey:
+          type: string
+          description: The generated RSA private key
+    AESKeyBits:
+      type: string
+      enum:
+        - BITS_128
+        - BITS_192
+        - BITS_256
+      description: Enum representing allowed AES key bits
+    GenerateKeysRequest:
+      type: object
+      properties:
+        keyBits:
+          $ref: '#/components/schemas/RSAKeyBits'
+      required:
+        - keyBits
+    RSAKeyBits:
+      type: string
+      enum:
+        - BITS_512
+        - BITS_1024
+        - BITS_2048
+        - BITS_3072
+        - BITS_4096
+      description: Enum representing allowed RSA key bits
+    GenerateKeysResponse:
+      type: object
+      properties:
+        publicKey:
+          type: string
+          description: The generated RSA public key
+        privateKey:
+          type: string
+          description: The generated RSA private key
+    EncryptRequest:
+      type: object
+      required:
+        - wordToEncrypt
+      properties:
+        wordToEncrypt:
+          type: string
+    DecryptRequest:
+      type: object
+      required:
+        - wordToDecrypt
+      properties:
+        wordToDecrypt:
+          type: string
+    SuccessResponse:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          description: Indicates if the operation was successful or not.
+        status:
+          type: string
+          description: HTTP status from the response.
+        message:
+          type: string
+          description: A brief message describing the result.
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp when the response was generated.
+        data:
+          type: object
+          description: The actual data payload of the response.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp when the response was generated.
+        errors:
+          type: array
+          items:
+            type: string
+          description: An array of error objects if the operation encountered errors.
