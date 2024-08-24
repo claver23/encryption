@@ -2,7 +2,7 @@ package com.etlions.encryption.infrastructure.web.openapi.mapper;
 
 import com.etlions.encryption.domain.utils.Constants;
 import com.etlions.openapicodegen.dto.AESKeyBits;
-
+// potential use of framework mapper with @'s
 public class AESKeyBitMapper {
 
   public static AESKeyBits mapToGeneratedEnum(Constants.AESKeyBits originalEnum) {

@@ -12,9 +12,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.security.KeyPair;
+import java.util.Base64;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/af")
+@RequestMapping("/api/v1/")
 @Controller
 public class RSAOpenApiAdapter implements RSAApiPort {
 
@@ -39,8 +41,15 @@ public class RSAOpenApiAdapter implements RSAApiPort {
 
   @Override
   public ResponseEntity<SuccessResponse> rsaGenerateKeysPost(GenerateKeysRequest generateKeysRequest) {
+
+    KeyPair keyPair = rsaGenerateKeysUseCase.RSAGenerateKeyPair(RSAKeyBitsMapper.mapToDtoEnum(generateKeysRequest.getKeyBits()));
+    String publicKeyString = Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded());
+    String privateKeyString = Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded());
     return  new PantherSuccessRes()
-        .dto(rsaGenerateKeysUseCase.RSAGenerateKeyPair(RSAKeyBitsMapper.mapToDtoEnum(generateKeysRequest.getKeyBits())),
+        .dto(GenerateKeysResponse.builder()
+                        .publicKey(publicKeyString)
+                        .privateKey(privateKeyString)
+                        .build(),
             "RSA key generation executed successfully");
   }
 
